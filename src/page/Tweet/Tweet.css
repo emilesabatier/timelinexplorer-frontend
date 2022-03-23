@@ -1,0 +1,21 @@
+.tweet {
+  width: 30rem;
+  height: 40rem;
+  padding: 1rem;
+  border: 0.05rem solid #E1E8ED;
+  border-radius: 1rem;
+}
+
+.tweet header {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.tweet header img {
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}

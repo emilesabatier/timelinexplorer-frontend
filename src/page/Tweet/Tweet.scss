@@ -1,0 +1,27 @@
+$mainBlue: #1da1f2;
+$mainWhite: #FFFFFF;
+$mainBlack: #14171A;
+$mainGray: #657786;
+$mainLightGray: #AAB8C2;
+$mainExtraLightGray: #E1E8ED;
+
+.tweet {
+    width: 30rem;
+    height: 40rem;
+    padding: 1rem;
+    border: 0.05rem solid $mainExtraLightGray;
+    border-radius: 1rem;
+
+    header {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        img {
+            height: 2.5rem;
+            width: 2.5rem;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+    }
+}
