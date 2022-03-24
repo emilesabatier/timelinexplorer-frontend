@@ -41,7 +41,7 @@ export class Home extends React.Component {
                 <main>
                     <div className='container'>
                         <h1>Explore any timeline.</h1>
-                        <h2>Discover new topics, people &amp; trends.</h2>
+                        <h2>Discover new topics, people &amp; trends on Twitter.</h2>
                         <div className="searchBar">
                             <span>@</span>
                             <form onSubmit={this.handleSubmit}>

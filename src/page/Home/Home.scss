@@ -125,8 +125,11 @@ $mainExtraLightGray: #E1E8ED;
                 margin-top: 2rem;
 
                 span {
+                    position: relative;
+                    top: -4px;
                     color: $mainExtraLightGray;
-                    font-size: 1.5rem;
+                    font-size: 3rem;
+                    border-radius: 0.25rem;
                 }
 
                 form {

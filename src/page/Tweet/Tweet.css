@@ -1,21 +1,211 @@
 .tweet {
-  width: 30rem;
-  height: 40rem;
+  width: 100%;
+  height: fit-content;
   padding: 1rem;
-  border: 0.05rem solid #E1E8ED;
-  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+  transition-duration: 0.2s;
+  transition-property: background-color;
+  cursor: pointer;
+}
+
+.tweet:hover {
+  background-color: #F5F8FA;
 }
 
 .tweet header {
-  width: 100%;
+  width: fit-content;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
 }
 
 .tweet header img {
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 48px;
+  width: 48px;
   border-radius: 50%;
-  margin-bottom: 1rem;
+}
+
+.tweet main {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.tweet main span {
+  font-family: inherit;
+}
+
+.tweet main .information {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: .25rem;
+}
+
+.tweet main .information .name {
+  font-weight: bold;
+}
+
+.tweet main .information .username, .tweet main .information .dot, .tweet main .information .time {
+  font-size: .9rem;
+  color: #657786;
+}
+
+.tweet main .information .verified {
+  max-width: 20px;
+  max-height: 20px;
+}
+
+.tweet main .information .verified svg {
+  fill: #1da1f2;
+  width: 100%;
+  height: 100%;
+}
+
+.tweet main .text {
+  margin: .5rem 0 1rem 0;
+}
+
+.tweet main .media {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  justify-items: flex-start;
+  align-items: flex-start;
+  border: 0px solid transparent;
+  border-width: 0 1px 1px 0;
+}
+
+.tweet main .media img {
+  display: inline-block;
+  max-width: 100%;
+  border: 0px solid #E1E8ED;
+  border-width: 1px 0 0 1px;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.tweet main .media.n1 {
+  border-radius: 1rem;
+}
+
+.tweet main .media.n1 img {
+  border-radius: 1rem;
+  grid-column-start: 1;
+  grid-column-end: span 2;
+  grid-row-start: 1;
+  grid-row-end: span 2;
+}
+
+.tweet main .media.n2 {
+  border-radius: 1rem;
+}
+
+.tweet main .media.n2 img:nth-child(1) {
+  border-radius: 1rem 0 0 1rem;
+  grid-column-start: 1;
+  grid-column-end: span 1;
+  grid-row-start: 1;
+  grid-row-end: span 2;
+}
+
+.tweet main .media.n2 img:nth-child(2) {
+  border-radius: 0 1rem 1rem 0;
+  grid-column-start: 2;
+  grid-column-end: span 1;
+  grid-row-start: 1;
+  grid-row-end: span 2;
+}
+
+.tweet main .media.n3 {
+  border-radius: 1rem;
+}
+
+.tweet main .media.n3 img:nth-child(1) {
+  border-radius: 1rem 0 0 0;
+  grid-column-start: 1;
+  grid-column-end: span 1;
+  grid-row-start: 1;
+  grid-row-end: span 1;
+}
+
+.tweet main .media.n3 img:nth-child(2) {
+  border-radius: 0 0 0 1rem;
+  grid-column-start: 1;
+  grid-column-end: span 1;
+  grid-row-start: 2;
+  grid-row-end: span 1;
+}
+
+.tweet main .media.n3 img:nth-child(3) {
+  border-radius: 0 1rem 1rem 0;
+  grid-column-start: 2;
+  grid-column-end: span 1;
+  grid-row-start: 1;
+  grid-row-end: span 2;
+}
+
+.tweet main .media.n4 img {
+  grid-column-end: span 1;
+  grid-row-end: span 1;
+}
+
+.tweet main .media.n4 img:nth-child(1) {
+  border-radius: 1rem 0 0 0;
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
+.tweet main .media.n4 img:nth-child(2) {
+  border-radius: 0 1rem 0 0;
+  grid-column-start: 2;
+  grid-row-start: 1;
+}
+
+.tweet main .media.n4 img:nth-child(3) {
+  border-radius: 0 0 0 1rem;
+  grid-column-start: 1;
+  grid-row-start: 2;
+}
+
+.tweet main .media.n4 img:nth-child(4) {
+  border-radius: 0 0 1rem 0;
+  grid-column-start: 2;
+  grid-row-start: 2;
+}
+
+.tweet main .stats {
+  margin-top: .5rem;
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+  gap: 5rem;
+}
+
+.tweet main .stats div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .75rem;
+}
+
+.tweet main .stats div svg {
+  width: 1.25rem;
+  fill: #657786;
+}
+
+.tweet main .stats div span {
+  color: #657786;
+  font-size: .8rem;
 }

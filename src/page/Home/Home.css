@@ -117,8 +117,11 @@
 }
 
 #home > main .container .searchBar span {
+  position: relative;
+  top: -4px;
   color: #E1E8ED;
-  font-size: 1.5rem;
+  font-size: 3rem;
+  border-radius: 0.25rem;
 }
 
 #home > main .container .searchBar form {

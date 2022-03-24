@@ -35,6 +35,12 @@ class Explore extends React.Component {
 
     }
 
+    getUser(data, username) {
+        return Object.values(data).filter(
+            function (data) { return data.screen_name === username }
+        )
+    }
+
     render() {
         const loadingPost = new Array(10);
         return (
@@ -55,20 +61,41 @@ class Explore extends React.Component {
                     </div>
                 </header>
                 <main>
-                    {this.state.loader ?
-                        loadingPost.fill(10).map((item, index) => {
-                            return (
-                                <div className="tweet-skeleton" key={index}>
-                                    <div className="img"></div>
-                                    <div className="line"></div>
-                                    <div className="line"></div>
-                                    <div className="line"></div>
-                                </div>
-                            )
-                        })
-                        :
-                        this.state.data.tweets.map((item, index) => <Tweet data={item} key={index}/>)
-                    }
+                    <header role="banner">
+                        profile
+                    </header>
+                    <main role="main">
+                        <table className='timeline'>
+                            <tbody>
+                                {this.state.loader ?
+                                    loadingPost.fill(10).map((item, index) => {
+                                        return (
+                                            <tr key={index}>
+                                                <td className="tweet-skeleton">
+                                                    <div className="img"></div>
+                                                    <div className="line"></div>
+                                                    <div className="line"></div>
+                                                    <div className="line"></div>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })
+                                    :
+                                    this.state.data.tweets.map((item, index) => {
+                                        let user = this.getUser(this.state.data.friends, item.username)[0]
+                                        return (
+                                            <tr key={index}>
+                                                <Tweet data={item} user={user} />
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </tbody>
+                        </table>
+                        <div className='ads'>
+                            ads
+                        </div>
+                    </main>
                 </main>
             </div>
         )
