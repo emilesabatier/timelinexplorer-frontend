@@ -2,13 +2,18 @@
   width: 100%;
   height: fit-content;
   padding: 1rem;
+  transition-duration: 0.2s;
+  transition-property: background-color;
+  cursor: pointer;
+}
+
+.tweet a {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   gap: 1rem;
-  transition-duration: 0.2s;
-  transition-property: background-color;
-  cursor: pointer;
+  text-decoration: none;
+  color: #14171A;
 }
 
 .tweet:hover {
@@ -23,7 +28,7 @@
   height: 100%;
 }
 
-.tweet header img {
+.tweet header a img {
   height: 48px;
   width: 48px;
   border-radius: 50%;
@@ -49,8 +54,18 @@
   gap: .25rem;
 }
 
+.tweet main .information a {
+  text-decoration: none;
+  color: #14171A;
+}
+
 .tweet main .information .name {
   font-weight: bold;
+}
+
+.tweet main .information .name:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
 }
 
 .tweet main .information .username, .tweet main .information .dot, .tweet main .information .time {
