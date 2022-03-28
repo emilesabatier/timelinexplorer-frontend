@@ -28,10 +28,10 @@ class Explore extends React.Component {
         this.setState({ loader: true })
 
         setTimeout(async () => {
-            const response = await axios.get(`http://localhost:3003/api/search/timeline/xsqueezie`)
+            const response = await axios.get(`http://localhost:3003/api/search/timeline/${this.props.params.username}`)
             this.setState({ data: response.data })
             this.setState({ loader: false })
-        }, 500)
+        }, 2000)
     }
 
     getUser(data, username) {
@@ -41,13 +41,14 @@ class Explore extends React.Component {
     }
 
     numFormatter(num) {
-        if(num > 999 && num < 1000000) return Math.floor(num/1000 * 10)/10 + 'K'
-        if(num > 1000000) return Math.floor(num/1000000 * 10)/10 + 'M'
+        if (num > 999 && num < 1000000) return Math.floor(num / 1000 * 10) / 10 + 'K'
+        if (num > 1000000) return Math.floor(num / 1000000 * 10) / 10 + 'M'
         return num
     }
 
     render() {
-        const loadingPost = new Array(10);
+        const loadingPost = new Array(10)
+        try {console.log(this.state.data)} catch (error) {console.error(error)}
         return (
             <div id="explore" className={`${this.state.loader ? 'noScroll' : ''}`}>
                 <header>
@@ -68,15 +69,42 @@ class Explore extends React.Component {
                 <main>
                     <header role="banner">
                         {this.state.loader ?
-                            <span></span>
-                        :
-                            <a href={`https://twitter.com/${this.state.data.user.username}`} target="_blank" rel="noreferrer noopener" className='profile'>
+                            <div className='profile-skeleton'>
                                 <div className='banner'>
-                                    <img src={this.state.data.user.background_image} alt="banner"/>
                                 </div>
                                 <div className='content'>
                                     <div className='avatar'>
-                                        <img src={`${this.state.data.user.avatar.slice(0, -10)}400x400.jpg`} alt="avatar"/>
+                                    </div>
+                                    <div className='name'>
+                                        <span></span>
+                                    </div>
+                                    <span className='username'></span>
+                                    <span className='bio'></span>
+                                    <div className='information'>
+                                        <div className='location'>
+
+                                        </div>
+                                        <div className='url'>
+
+                                        </div>
+                                        <div className='joinDate'>
+
+                                        </div>
+                                    </div>
+                                    <div className='follows'>
+                                        <div className='following'></div>
+                                        <div className='followers'></div>
+                                    </div>
+                                </div>
+                            </div>
+                            :
+                            <a href={`https://twitter.com/${this.state.data.user.username}`} target="_blank" rel="noreferrer noopener" className='profile'>
+                                <div className='banner'>
+                                    <img src={this.state.data.user.background_image} alt="banner" />
+                                </div>
+                                <div className='content'>
+                                    <div className='avatar'>
+                                        <img src={`${this.state.data.user.avatar.slice(0, -10)}400x400.jpg`} alt="avatar" />
                                     </div>
                                     <div className='name'>
                                         <span>{this.state.data.user.name}</span>
@@ -135,21 +163,26 @@ class Explore extends React.Component {
                                         )
                                     })
                                     :
-                                    this.state.data.tweets.map((item, index) => {
-                                        let user = this.getUser(this.state.data.friends, item.username)[0]
-                                        return (
-                                            <tr key={index}>
-                                                <Tweet data={item} user={user} />
-                                            </tr>
-                                        )
-                                    })
+                                    (
+                                        (!this.state.data.tweets.length) ? <tr><td>No content available</td></tr>
+                                            :
+                                            this.state.data.tweets.slice(0, 100).map((item, index) => {
+                                                let user = this.getUser(this.state.data.friends, item.username)[0]
+                                                return (
+                                                    <tr key={index}>
+                                                        <Tweet data={item} user={user} />
+                                                    </tr>
+                                                )
+                                            })
+                                    )
                                 }
                             </tbody>
                         </table>
-                        <div className='ads'>
-                            ads
-                        </div>
+
                     </main>
+                    <div className='ads'>
+                        <span>ads</span>
+                    </div>
                 </main>
             </div>
         )
