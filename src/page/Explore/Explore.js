@@ -277,8 +277,8 @@ class Explore extends React.Component {
                                             this.state.data.tweets.slice(0, 100).map((item, index) => {
                                                 let user = this.getUser(this.state.data.friends, item.username)[0]
                                                 if (index % 10 === 0) return (
-                                                    <React.Fragment>
-                                                        <tr key={index}>
+                                                    <Mobile key={index}>
+                                                        <tr key={`ads${index}`}>
                                                             <td className="ads">
                                                                 <div className='ads'>
                                                                     <span>ads</span>
@@ -288,7 +288,7 @@ class Explore extends React.Component {
                                                         <tr key={index}>
                                                             <Tweet data={item} user={user} />
                                                         </tr>
-                                                    </React.Fragment>
+                                                    </Mobile>
 
                                                 )
                                                 return (

@@ -38,17 +38,17 @@ let replyComponent = (replyTo) => {
         }
         else if (replyToLength > 1) {
             if (index === replyToLength-1) return (
-                                                <React.Fragment>
+                                                <React.Fragment key={index}>
                                                     &nbsp;and&nbsp;
-                                                    <a key={index} href={`https://twitter.com/${reply.screen_name}`} target="_blank" rel="noreferrer noopener">
+                                                    <a href={`https://twitter.com/${reply.screen_name}`} target="_blank" rel="noreferrer noopener">
                                                         @{reply.screen_name}
                                                     </a>
                                                 </React.Fragment>     
                                             )
             else if (index > 0) return (
-                                    <React.Fragment>
+                                    <React.Fragment key={index}>
                                         &nbsp;
-                                        <a key={index} href={`https://twitter.com/${reply.screen_name}`} target="_blank" rel="noreferrer noopener">
+                                        <a href={`https://twitter.com/${reply.screen_name}`} target="_blank" rel="noreferrer noopener">
                                             @{reply.screen_name}
                                         </a>
                                     </React.Fragment>     
