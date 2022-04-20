@@ -1,3 +1,8 @@
+@media only screen and (max-width: 768px) {
+  :root {
+    font-size: 3.5vw;
+  }
+}
 .tweet {
   width: 100%;
   height: fit-content;
@@ -31,8 +36,8 @@
   border-radius: 50%;
 }
 .tweet header a img {
-  height: 48px;
-  width: 48px;
+  height: 3rem;
+  width: 3rem;
   border-radius: 50%;
 }
 .tweet main {
@@ -88,6 +93,7 @@
 .tweet main .replyTo {
   color: #657786;
   padding: 0.3rem 0;
+  width: 100%;
 }
 .tweet main .replyTo a {
   text-decoration: none;
@@ -99,6 +105,7 @@
 }
 .tweet main .text {
   margin: 0.3rem 0 1rem 0;
+  width: 100%;
 }
 .tweet main .text a {
   text-decoration: none;
@@ -209,6 +216,7 @@
   justify-content: stretch;
   align-items: center;
   gap: 5rem;
+  width: 100%;
 }
 .tweet main .stats div {
   display: flex;

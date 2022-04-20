@@ -9,7 +9,6 @@ export class Home extends React.Component {
         username: ""
     }
 
-
     componentDidMount() {
         document.title = `timelinexplorer | Explore any timeline`
     }
@@ -59,15 +58,17 @@ export class Home extends React.Component {
                         <h1>Explore any timeline.</h1>
                         <h2>Discover new topics, trends &amp; people on Twitter.</h2>
                         <div className="searchBar">
-                            <span>@</span>
                             <form onSubmit={this.handleSubmit}>
-                                <input
-                                    type="text"
-                                    autoFocus
-                                    placeholder="username"
-                                    value={this.state.username}
-                                    onChange={(e) => this.setState({ username: e.target.value })}
-                                />
+                                <div className='content'>
+                                    <span>@</span>
+                                    <input
+                                        type="text"
+                                        autoFocus
+                                        placeholder="username"
+                                        value={this.state.username}
+                                        onChange={(e) => this.setState({ username: e.target.value })}
+                                    />
+                                </div>
                                 <button type="submit">Explore</button>
                             </form>
                         </div>
