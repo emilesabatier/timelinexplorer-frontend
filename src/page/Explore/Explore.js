@@ -34,6 +34,11 @@ class Explore extends React.Component {
         }, 2000)
     }
 
+    openInNewTab = (url) => {
+        const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+        if (newWindow) newWindow.opener = null
+      }
+
     getUser(data, username) {
         return Object.values(data).filter(
             function (data) { return data.screen_name === username }
@@ -48,7 +53,11 @@ class Explore extends React.Component {
 
     render() {
         const loadingPost = new Array(10)
-        try {console.log(this.state.data)} catch (error) {console.error(error)}
+        const today = new Date()
+        const yesterday = new Date()
+        yesterday.setDate(today.getDate() - 1)
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+        //try {console.log(this.state.data)} catch (error) {console.error(error)}
         return (
             <div id="explore" className={`${this.state.loader ? 'noScroll' : ''}`}>
                 <header>
@@ -98,7 +107,7 @@ class Explore extends React.Component {
                                 </div>
                             </div>
                             :
-                            <a href={`https://twitter.com/${this.state.data.user.username}`} target="_blank" rel="noreferrer noopener" className='profile'>
+                            <div className="profile" onClick={() => this.openInNewTab(`https://twitter.com/${this.state.data.user.username}`)}>
                                 <div className='banner'>
                                     <img src={this.state.data.user.background_image} alt="banner" />
                                 </div>
@@ -143,10 +152,11 @@ class Explore extends React.Component {
                                         <div className='followers'><span>{this.numFormatter(this.state.data.user.followers)}</span> Followers</div>
                                     </div>
                                 </div>
-                            </a>
+                            </div>
                         }
                     </header>
                     <main role="main">
+                        <span>timeline of <span>{`${yesterday.toLocaleDateString(undefined, options)}`}</span></span>
                         <table className='timeline'>
                             <tbody>
                                 {this.state.loader ?

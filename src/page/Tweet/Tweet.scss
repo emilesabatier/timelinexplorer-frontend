@@ -13,7 +13,7 @@ $mainExtraExtraLightGray: #F5F8FA;
     transition-duration: 0.2s;
     transition-property: background-color;
     cursor: pointer;
-    >a {
+    >.content {
         display: flex;
         justify-content: center;
         align-items: flex-start;
@@ -96,6 +96,18 @@ $mainExtraExtraLightGray: #F5F8FA;
                     fill: $mainBlue;
                     width: 1.25rem;
                     height: 1.25rem;
+                }
+            }
+        }
+        .replyTo {
+            color: $mainGray;
+            padding: .3rem 0;
+            a {
+                text-decoration: none;
+                color: $mainBlue;
+                &:hover {
+                    text-decoration: underline;
+                    text-decoration-thickness: 1px;
                 }
             }
         }

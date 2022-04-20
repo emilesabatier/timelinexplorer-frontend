@@ -2,11 +2,71 @@ import twitter from 'twitter-text'
 import parse from 'html-react-parser';
 
 import "./Tweet.css"
+import React from 'react';
 
 let numFormatter = (num) => {
     if (num > 999 && num < 1000000) return Math.floor(num / 1000 * 10) / 10 + 'K'
     if (num > 1000000) return Math.floor(num / 1000000 * 10) / 10 + 'M'
     return num
+}
+
+const openInNewTab = (url) => {
+    const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+    if (newWindow) newWindow.opener = null
+  }
+  
+let cleanTweet = (tweet) => {
+    const regex = /^(?<!\w)@[\w+]{1,15}\b/g
+    var tweetText = tweet.replace(regex, '').trim()
+    if (!regex.test(tweetText)) {
+        return parse(twitter.autoLink(tweetText, {usernameIncludeSymbol: true}))
+    }
+    else return cleanTweet(tweetText)
+}
+
+let replyComponent = (replyTo) => {
+    let replyToLength = replyTo.length
+    let render = replyTo.map((reply, index) => {
+        if (replyToLength > 3) {
+            if (index === 0) return (
+                <a key={index} href={`https://twitter.com/${reply.screen_name}`} target="_blank" rel="noreferrer noopener">
+                    @{reply.screen_name}
+                </a>
+            )
+            else if (index === 1) return <span key={index}>and {replyToLength-3} more</span>
+            else return null
+        }
+        else if (replyToLength > 1) {
+            if (index === replyToLength-1) return (
+                                                <React.Fragment>
+                                                    &nbsp;and&nbsp;
+                                                    <a key={index} href={`https://twitter.com/${reply.screen_name}`} target="_blank" rel="noreferrer noopener">
+                                                        @{reply.screen_name}
+                                                    </a>
+                                                </React.Fragment>     
+                                            )
+            else if (index > 0) return (
+                                    <React.Fragment>
+                                        &nbsp;
+                                        <a key={index} href={`https://twitter.com/${reply.screen_name}`} target="_blank" rel="noreferrer noopener">
+                                            @{reply.screen_name}
+                                        </a>
+                                    </React.Fragment>     
+                                )
+            return (
+                <a key={index} href={`https://twitter.com/${reply.screen_name}`} target="_blank" rel="noreferrer noopener">
+                    @{reply.screen_name}
+                </a>
+            )
+        }
+        else return (
+            <a key={index} href={`https://twitter.com/${reply.screen_name}`} target="_blank" rel="noreferrer noopener">
+                @{reply.screen_name}
+            </a>
+        )
+            
+    })
+    return render
 }
 
 const Tweet = (props) => {
@@ -15,7 +75,7 @@ const Tweet = (props) => {
     let day = Math.floor((today.getTime() - Date.parse(props.data.date)) / (24 * 3600 * 1000))
     return (
         <td className="tweet">
-            <a href={props.data.link} target="_blank" rel="noreferrer noopener">
+            <div className="content" onClick={() => openInNewTab(props.data.link)} >
                 <header>
                     <a href={`https://twitter.com/${props.user.screen_name}`} target="_blank" rel="noreferrer noopener">
                         <img src={props.user.profile_image_url} alt="profile thumbnail" />
@@ -38,7 +98,14 @@ const Tweet = (props) => {
                         <span className="dot">·</span>
                         <span className="time">{(day > 0) ? `${day}d` : `${hour}h`}</span>
                     </div>
-                    <div className="text">{parse(twitter.autoLink(props.data.tweet, {usernameIncludeSymbol: true}))}</div>
+                    {props.data.reply_to.length > 0 ?
+                        <div className="replyTo">
+                            Replying to {replyComponent(props.data.reply_to)}
+                        </div>
+                        :
+                        null
+                    }
+                    <div className="text">{cleanTweet(props.data.tweet)}</div>
                     {props.data.photos.length > 0 ?
                         <div className={`media n${props.data.photos.length}`}>
                             {props.data.photos.map((item, index) => {
@@ -66,7 +133,7 @@ const Tweet = (props) => {
                     </div>
 
                 </main>
-            </a>
+            </div>
         </td>
     )
 }

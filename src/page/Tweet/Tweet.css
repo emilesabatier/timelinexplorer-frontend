@@ -7,7 +7,7 @@
   cursor: pointer;
 }
 
-.tweet > a {
+.tweet > .content {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -99,6 +99,21 @@
   fill: #1da1f2;
   width: 1.25rem;
   height: 1.25rem;
+}
+
+.tweet main .replyTo {
+  color: #657786;
+  padding: .3rem 0;
+}
+
+.tweet main .replyTo a {
+  text-decoration: none;
+  color: #1da1f2;
+}
+
+.tweet main .replyTo a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
 }
 
 .tweet main .text {

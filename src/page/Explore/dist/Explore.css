@@ -1,7 +1,7 @@
 #explore {
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow-y: hidden;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -12,6 +12,7 @@
 }
 #explore > header {
   height: 5rem;
+  max-width: 100%;
   max-height: 3rem;
   background-color: #FFFFFF;
   display: grid;
@@ -39,7 +40,7 @@
   fill: #FFFFFF;
 }
 #explore > header .language {
-  min-width: 600px;
+  min-width: 350px;
 }
 #explore > header .contact {
   height: 100%;
@@ -83,6 +84,7 @@
   height: 100%;
   background-color: #F5F8FA;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 1rem;
   box-sizing: border-box;
 }
@@ -90,6 +92,7 @@
   background-color: #F5F8FA;
   position: sticky;
   top: 0;
+  max-width: 1fr;
   height: 100vh;
 }
 #explore > main > header .profile-skeleton {
@@ -149,7 +152,7 @@
   justify-content: flex-start;
   align-items: center;
   gap: 0.25rem;
-  min-width: 100%;
+  width: 100%;
 }
 #explore > main > header > .profile .content .name span, #explore > main > header .profile-skeleton .content .name span {
   font-weight: bold;
@@ -238,8 +241,17 @@
   height: 100%;
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  min-width: 350px;
+}
+#explore > main > main > span {
+  margin-bottom: 0.5rem;
+  color: #657786;
+}
+#explore > main > main > span > span {
+  color: #14171A;
 }
 #explore > main > main table {
   width: 100%;
@@ -257,7 +269,7 @@
 }
 #explore > main > main table tbody tr > td {
   width: 100%;
-  height: fit-content;
+  height: 100%;
   padding: 1rem;
 }
 #explore > main > main table tbody tr .tweet-skeleton {
@@ -292,7 +304,7 @@
   align-items: center;
   position: sticky;
   top: 0;
-  height: 100vh;
+  height: 100%;
 }
 #explore > main .ads span {
   width: 100%;
